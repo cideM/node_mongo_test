@@ -11,18 +11,24 @@ test("foo 2", async () => {
   const db = await getTestDb();
 
   const collection = db.collection('users');
-  await collection.insertOne({ name: 'John', email: 'john@example.com' });
+  await collection.insertOne({ name: 'Jane', email: 'Jane@example.com' });
 
-  const user = await collection.findOne({ name: 'John' });
-  assert.strictEqual(user!.email, 'john@example.com');
+  const user = await collection.findOne({ name: 'Jane' });
+  assert.strictEqual(user!.email, 'Jane@example.com');
+
+  const count = await collection.countDocuments()
+  assert.strictEqual(count, 1)
 })
 
 test("bar 2", async () => {
   const db = await getTestDb();
 
   const collection = db.collection('users');
-  await collection.insertOne({ name: 'Foo', email: 'Foo@example.com' });
+  await collection.insertOne({ name: 'Jona', email: 'Jona@example.com' });
 
-  const user = await collection.findOne({ name: 'Foo' });
-  assert.strictEqual(user!.email, 'Foo@example.com');
+  const user = await collection.findOne({ name: 'Jona' });
+  assert.strictEqual(user!.email, 'Jona@example.com');
+
+  const count = await collection.countDocuments()
+  assert.strictEqual(count, 1)
 })
